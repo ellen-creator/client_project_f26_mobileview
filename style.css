@@ -1,0 +1,340 @@
+
+:root {
+    --um-blue: #00274C;
+    --um-maize: #FFCB05;
+    --text: #1a1a1a;
+    --muted: #4a4a4a;
+    --surface: #ffffff;
+    --border: #d0d0d0;
+
+    /* Step colors: a blend from blue to maize (one value per step) */
+    --step-1: #00274C;
+    --step-2: #405A3D;
+    --step-3: #786F26;          /* darkened so white text reaches 4.5:1 */
+    --step-4: #BFA217;
+    --step-5: #FFCB05;
+
+    /* Space used by the sticky bar, so anchor links are not hidden under it */
+    --sticky-offset: 5.5rem;
+}
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--sticky-offset); /* keeps headings visible when jumping */
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color : var(--text);
+    background-color : var(--surface);
+}
+main{
+    padding: 1rem;
+    max-width: 48rem;
+    margin: 0 auto;
+}
+
+.site-header {
+    position:sticky;
+    top:0;
+    z-index:100;
+    display: flex;              /* logo tile on the left, process steps beside it */
+    align-items: stretch;
+    background: linear-gradient(90deg, var(--step-1), var(--step-5));
+}
+
+/* Square logo at the left of the sticky bar. Its navy background continues
+   the bar's navy start, and a 1px white line separates it from the first step. */
+.brand {
+    flex: 0 0 auto;
+    width: 4.5rem;
+    height: 4.5rem;
+    padding: 0;
+    background-color: var(--step-1);
+    border-right: 1px solid #ffffff;
+}
+
+.brand img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.process-nav {
+    flex: 1 1 auto;
+    min-width: 0;               /* lets the steps scroll instead of pushing the logo */
+}
+.process-steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    overflow-x: auto;           /* on narrow screens the steps scroll sideways */
+    -webkit-overflow-scrolling: touch;
+}
+
+.process-steps li {
+    flex: 1 0 auto;             /* do not shrink below the text width */
+}
+
+.process-steps a {
+    display: block;
+    padding: 0.9rem 0.75rem;
+    min-height: 44px;           /* comfortable tap target */
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    color: #ffffff;
+    border-bottom: 4px solid transparent;
+}
+
+/* Each step gets its own solid color from the gradient, so text contrast stays readable */
+.process-steps li:nth-child(1) a { background-color: var(--step-1); }
+.process-steps li:nth-child(2) a { background-color: var(--step-2); }
+.process-steps li:nth-child(3) a { background-color: var(--step-3); }
+.process-steps li:nth-child(4) a { background-color: var(--step-4); color: var(--um-blue); }
+.process-steps li:nth-child(5) a { background-color: var(--step-5); color: var(--um-blue); }
+
+/* Hover and keyboard focus: a visible outline, not just a color change */
+.process-steps a:hover {
+    text-decoration: underline;
+}
+
+.process-steps a:focus {
+    outline: 3px solid #ffffff;
+    outline-offset: -6px;
+}
+
+main img {
+    display: block; 
+    width: 100%; 
+    max-width: 1200px; 
+    height: auto; 
+    margin: 0 auto 30px auto;
+}
+
+
+.skip {
+    position: relative;
+  }
+.skip a { 
+    position: absolute;
+    top: -65px;
+    left: 10px;           /* 화면 좌측 위치 지정 */
+    background: #ffffff;  /* 흰색 배경을 주어야 뒤쪽 요소와 글자가 겹치지 않음 */
+    color: #000000;       /* 글자색 지정 */
+    padding: 8px 12px;    /* 버튼 형태로 보이도록 여백 추가 */
+    z-index: 1000;        /* 다른 헤더 및 본문 요소보다 위에 표시 */
+    text-decoration: none;
+    }
+.skip a:focus {
+    top: 0.5rem;          /* slides into view when focused with Tab */
+}
+nav a:focus {
+    outline: 2px solid white;
+    outline-offset: 3px;
+}
+*:focus {
+    outline: 5px dashed green;   /* hw3 전역 포커스 스타일 */
+}
+
+.page-title {
+    padding: 1.5rem 0 1rem;
+    border-bottom: 3px solid var(--um-maize);
+}
+
+/* Hero image: about a quarter of the screen height on first load.
+   svh is the visible height on phones; vh is the fallback for older browsers. */
+.page-title img {
+    display: block;
+    width: 100%;
+    height: 25vh;
+    height: 25svh;
+    min-height: 8rem;           /* keeps it usable on very short screens */
+    object-fit: cover;          /* fills the box, cropping the edges instead of stretching */
+    margin: 0 0 1rem;
+}
+
+/* Responsive video: keeps a 16:9 box that scales with the screen width */
+.video {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin: 1rem 0;
+}
+
+.video iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+
+/* ---------- On this page (anchor table of contents) ----------
+   A quiet vertical list: reads top to bottom, does not compete with the content. */
+.on-this-page {
+    margin: 1.5rem 0;
+    padding: 0.25rem 0 0.5rem;
+    border-top: 2px solid var(--um-blue);
+}
+
+.on-this-page h2 {
+    margin: 0.5rem 0 0.2rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.on-this-page ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: toc;
+}
+
+.on-this-page li {
+    counter-increment: toc;
+    border-bottom: 1px solid var(--border);
+}
+
+.on-this-page a {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    min-height: 20px;           /* tap target */
+    padding: 0.4rem 0;
+    color: var(--um-blue);
+    text-decoration: none;
+}
+
+/* Small step number in front of each line */
+.on-this-page a::before {
+    content: counter(toc, decimal-leading-zero);
+    flex: 0 0 auto;
+    min-width: 2rem;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: var(--muted);
+}
+
+.on-this-page a:hover,
+.on-this-page a:focus {
+    text-decoration: underline;
+}
+
+/* ---------- Content sections ---------- */
+
+
+.content-section {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+/* Anchor targets are still reachable below the sticky bar (see scroll-padding-top above) */
+.content-section,
+.on-this-page {
+    scroll-margin-top: var(--sticky-offset);
+}
+
+/* ---------- Card Grid ---------- */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: 1rem;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: #ffffff;
+    border: 1px solid var(--border);
+    border-top: 6px solid var(--um-maize);
+    border-radius: 6px;
+}
+
+.card h3 {
+    margin-top: 0;
+}
+
+.card p {
+    flex-grow: 1;               /* pushes the links to the same baseline across cards */
+    color: var(--muted);
+}
+
+.card a {
+    display: inline-block;
+    min-height: 44px;
+    padding: 0.5rem 0;
+    font-weight: bold;
+    color: var(--um-blue);
+}
+
+/* footer */
+
+.site-footer {
+    margin-top: 2rem;
+    padding: 1.5rem 1rem;
+    background-color: var(--um-blue);
+    color: #ffffff;
+}
+
+.site-footer a {
+    color: var(--um-maize);
+}
+
+.site-footer p,
+.site-footer address {
+    margin: 0.5rem 0;
+    font-style: normal;
+}
+
+/* ---------- Data table (moved from inline styles) ---------- */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: sans-serif;
+    margin: 20px 0;
+}
+
+.data-table th,
+.data-table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #dddddd;
+}
+
+.data-table thead tr {
+    background-color: #f2f2f2;
+    border-bottom: 2px solid #cccccc;
+}
+
+.data-table th {
+    font-weight: bold;
+}
+
+.data-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.data-table tbody tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+.data-table tbody td:first-child {
+    font-weight: bold;
+}
+
+/* ----------  Accessibility exception: reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
