@@ -359,6 +359,18 @@ nav a:focus {
     font-weight: bold;
 }
 
+/* Wide tables scroll sideways on phones instead of squeezing their columns */
+.table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 1rem 0;
+}
+
+.table-scroll .data-table {
+    min-width: 32rem;           /* keeps the columns readable; the wrapper scrolls */
+    margin: 0;
+}
+
 /* ----------  Accessibility exception: reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
     html {
