@@ -15,7 +15,7 @@
     --step-5: #FFCB05;
 
     /* Space used by the sticky bar, so anchor links are not hidden under it */
-    --sticky-offset: 5.5rem;
+    --sticky-offset: 3.5rem;
 }
 html {
     scroll-behavior: smooth;
@@ -48,8 +48,8 @@ main{
    the bar's navy start, and a 1px white line separates it from the first step. */
 .brand {
     flex: 0 0 auto;
-    width: 4.5rem;
-    height: 4.5rem;
+    width: 3rem;
+    aspect-ratio: 1 / 1;      
     padding: 0;
     background-color: var(--step-1);
     border-right: 1px solid #ffffff;
@@ -59,7 +59,7 @@ main{
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .process-nav {
@@ -76,18 +76,22 @@ main{
 }
 
 .process-steps li {
-    flex: 1 0 auto;             /* do not shrink below the text width */
+    flex: 1 1 0;                /* five equal slices of the bar: all steps visible at once */
+    min-width: 0;
 }
 
 .process-steps a {
-    display: block;
-    padding: 0.9rem 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 0.25rem;
     min-height: 44px;           /* comfortable tap target */
     text-align: center;
     text-decoration: none;
     font-weight: bold;
-    font-size: 0.95rem;
-    white-space: nowrap;
+    font-size: 0.85rem;
+    line-height: 1.2;           /* two-line labels stay tidy */
+    overflow-wrap: break-word;
     color: #ffffff;
     border-bottom: 4px solid transparent;
 }
@@ -109,6 +113,14 @@ main{
     outline-offset: -6px;
 }
 
+/* Current page: a thick underline plus the aria-current attribute,
+   so the current step is not shown by color alone */
+.process-steps a[aria-current="page"] {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 0.35em;
+}
+
 main img {
     display: block; 
     width: 100%; 
@@ -118,20 +130,23 @@ main img {
 }
 
 
-.skip {
+.skip  {
     position: relative;
   }
-.skip a { 
+
+  .skip a {
     position: absolute;
-    top: -65px;
-    left: 10px;           /* 화면 좌측 위치 지정 */
+    left: -9999px;        /* far off-screen, so it is hidden until focused */
+    top: auto;
     background: #ffffff;  /* 흰색 배경을 주어야 뒤쪽 요소와 글자가 겹치지 않음 */
     color: #000000;       /* 글자색 지정 */
     padding: 8px 12px;    /* 버튼 형태로 보이도록 여백 추가 */
     z-index: 1000;        /* 다른 헤더 및 본문 요소보다 위에 표시 */
     text-decoration: none;
-    }
+}
+
 .skip a:focus {
+    left: 0.5rem;
     top: 0.5rem;          /* slides into view when focused with Tab */
 }
 nav a:focus {
@@ -157,6 +172,11 @@ nav a:focus {
     min-height: 8rem;           /* keeps it usable on very short screens */
     object-fit: cover;          /* fills the box, cropping the edges instead of stretching */
     margin: 0 0 1rem;
+}
+
+/* For hero photos where the important part is lower in the picture (here: the laptops) */
+.page-title img.hero-bottom {
+    object-position: center 60%;
 }
 
 /* Responsive video: keeps a 16:9 box that scales with the screen width */
@@ -201,15 +221,22 @@ nav a:focus {
 
 .on-this-page li {
     counter-increment: toc;
+    position: relative;         /* the invisible tap area below is positioned from this box */
     border-bottom: 1px solid var(--border);
+}
+
+/* Invisible extra area around each link, so the tap target is about 54px tall */
+.on-this-page a::after {
+    content: "";
+    position: absolute;
+    inset: -0.5rem 0;
 }
 
 .on-this-page a {
     display: flex;
     align-items: center;
     gap: 0.3rem;
-    min-height: 20px;           /* tap target */
-    padding: 0.4rem 0;
+    padding: 0.4rem 0;          /* visible spacing stays tight */
     color: var(--um-blue);
     text-decoration: none;
 }

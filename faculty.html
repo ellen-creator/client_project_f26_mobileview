@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
 
-    <title>Faculty Hub| UMSI</title>
+    <title>Faculty Hub | UMSI</title>
 </head>
 <body>
 
@@ -18,19 +18,21 @@
         <nav class="process-nav" aria-label="Project process">
             <ol class="process-steps">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="prep.html">Preparing for Your Experience</a></li>
-                <li><a href="experience.html">During Your Experience</a></li>
-                <li><a href="ending.html">Wrap-Up, Impact &amp; Next Steps</a></li>
+                <li><a href="prep.html" title="Preparing for Your Experience">Prepare</a></li>
+                <li><a href="experience.html" title="During Your Experience">During</a></li>
+                <li><a href="ending.html" title="Wrap-Up, Impact &amp; Next Steps">Wrap-Up</a></li>
                 <li><a href="faculty.html" aria-current="page">Faculty Hub </a></li>
             </ol>
         </nav>
     </header>
 
     <!-- Page title -->
-    <header class="page-title">
+    <main id="main">
+    <div class="page-title">
+        <img class="hero-bottom" src="images/faculty-web.jpg" alt="Three students sit together at a table, working on laptops and talking">
         <p class="eyebrow">Step 5 of 5</p>
         <h1>Faculty Hub: Integrating Engaged Learning into Your Course</h1>
-    </header>
+    </div>
 
     <!-- Anchor table of contents -->
     <nav class="on-this-page" aria-labelledby="toc-title">
@@ -44,7 +46,6 @@
         </ul>
     </nav>
 
-<main id="main">
 
     <section id="scaffold" class="content-section">
         <h2>Scaffold Essential Professional Skills in Your Curriculum</h2>
@@ -158,7 +159,9 @@
         <h2>Additional Campus Partner Resources</h2>
         <p>Cross-disciplinary partner organizations across the University of Michigan offer specialized instructional support and workshop sessions that you can incorporate into your curriculum.</p>
 
-        <article>
+        <div class="card-grid">
+
+        <article class="card">
             <h3><a href="https://ginsberg.umich.edu/">Ginsberg Center for Community Engagement</a></h3>
             <ul>
                 <li><strong>Focus:</strong> Prepares undergraduate and graduate students for respectful, reciprocal community-engaged learning in civic and non-profit settings.</li>
@@ -167,7 +170,7 @@
             </ul>
         </article>
 
-        <article>
+        <article class="card">
             <h3>Center for Socially Engaged Engineering and Design (C-SEED)</h3>
             <ul>
                 <li><strong>Focus:</strong> Educational sessions on socially engaged design, sociotechnical thinking, human-centered approaches, and community ethics in technical applications.</li>
@@ -175,13 +178,14 @@
             </ul>
         </article>
 
-        <article>
+        <article class="card">
             <h3>University of Michigan Library Instructional Services</h3>
             <ul>
                 <li><strong>Focus:</strong> Specialized instruction on source evaluation, special collections, literature strategies, poster presentations, data visualization, and citation management tools.</li>
                 <li>🔗 <strong>Action:</strong> <a href="https://www.lib.umich.edu/services-and-spaces/instructors">Request U-M Library Instruction</a></li>
             </ul>
         </article>
+        </div>
     </section>
 
 </main>
